@@ -11,11 +11,12 @@ final class PhotoViewController: UIViewController {
     var viewModel: PhotoViewModelProtocol!
 
     private lazy var imageView = UIImageView()
+    private lazy var authorView = AuthorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(imageView)
+        view.addSubviews(imageView, authorView)
         imageView.contentMode = .scaleAspectFill
         view.backgroundColor = Palette.background.color
 
@@ -26,6 +27,10 @@ final class PhotoViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
         imageView.pin.all()
+
+        authorView.pin
+            .topLeft(16)
+            .sizeToFit()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -36,11 +41,13 @@ final class PhotoViewController: UIViewController {
     // MARK: - Model
 
     struct Model {
+        let author: String
         let imageResource: URL
     }
 
     func setModel(_ model: Model) {
         imageView.loadImage(for: model.imageResource)
+        authorView.setModel(.init(text: model.author))
     }
 }
 

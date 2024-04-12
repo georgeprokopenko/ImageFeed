@@ -21,7 +21,10 @@ extension PhotoViewModel: PhotoViewModelProtocol {
 
     func viewDidLoad() {
         viewController?.setModel(
-            .init(imageResource: item.src.original)
+            .init(
+                author: item.photographer,
+                imageResource: item.src.large2x
+            )
         )
     }
 }

@@ -6,7 +6,8 @@ struct RoundEdges: OptionSet {
     static let topEdge = RoundEdges(rawValue: 1 << 0)
     static let bottomEdge = RoundEdges(rawValue: 1 << 1)
     static let rightTop = RoundEdges(rawValue: 1 << 2)
-
+    static let trailingEdge = RoundEdges(rawValue: 1 << 3)
+    
     static let empty: RoundEdges = []
     static let all: RoundEdges = [.topEdge, .bottomEdge]
 
@@ -26,7 +27,7 @@ struct RoundEdges: OptionSet {
             corners.formUnion([.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
         }
 
-        if contains(.rightTop) { // Check if rightTop option is included
+        if contains(.rightTop) {
             corners.formUnion([.layerMaxXMinYCorner])
         }
 

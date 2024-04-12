@@ -24,14 +24,12 @@ final class FeedItemCell: CommonRowCell {
         maskedCorners: RoundEdges.all.maskedCorners
     )
 
-    private lazy var authorLabel = UILabel(
-        font: .systemFont(ofSize: 16),
-        textColor: Palette.interfaceBlack.color
-    )
+    private lazy var authorView = AuthorView()
 
     override func loadLayout() {
         addSubview(button)
         button.addSubviews(imageView)
+        imageView.addSubviews(authorView)
     }
 
     override func layoutSubviews() {
@@ -42,6 +40,10 @@ final class FeedItemCell: CommonRowCell {
             .vertically(8)
 
         imageView.pin.all()
+
+        authorView.pin
+            .bottomLeft()
+            .sizeToFit()
     }
 
     static func height(with width: CGFloat, model: Model) -> CGFloat {
@@ -51,7 +53,7 @@ final class FeedItemCell: CommonRowCell {
     // MARK: - DarkMode Support
 
     func updateStyle() {
-        imageView.alpha = traitCollection.userInterfaceStyle == .light ? 1.0 : 0.5
+        imageView.alpha = traitCollection.userInterfaceStyle == .light ? 1.0 : 0.7
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -70,6 +72,7 @@ final class FeedItemCell: CommonRowCell {
 
     func setModel(_ model: Model) {
         imageView.loadImage(for: model.imageResource)
+        authorView.setModel(.init(text: model.author))
 
         updateStyle()
         setNeedsLayout()

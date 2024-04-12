@@ -33,16 +33,17 @@ final class HomeViewModel {
     private func load(mode: FeedLoadingMode) {
         Task {
             try await displayItems(
-                feedService.load(mode: mode)
+                animated: mode == .refresh,
+                items: feedService.load(mode: mode)
             )
         }
     }
 
     @MainActor
-    private func displayItems(_ items: [FeedItem]) {
+    private func displayItems(animated: Bool, items: [FeedItem]) {
         viewController?.reloadCollectionView(
             with: items.map { feedItemRow($0) },
-            animated: didLoadOnce
+            animated: didLoadOnce ? animated : false
         )
 
         didLoadOnce = true

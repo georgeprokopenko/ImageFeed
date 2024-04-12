@@ -1,8 +1,7 @@
 import UIKit
 import EasyCollectionView
 
-protocol HomeViewControllerProtocol: BaseViewControllerProtocol, CollectionViewControllerProtocol {
-}
+protocol HomeViewControllerProtocol: BaseViewControllerProtocol, CollectionViewControllerProtocol {}
 
 final class HomeViewController: UIViewController, CollectionViewController {
 
