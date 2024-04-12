@@ -139,7 +139,6 @@
 			children = (
 				4DD994392BC8661E00E20140 /* AppDelegate.swift */,
 				4DD994302BC8660C00E20140 /* Scenes */,
-				4DD994462BC8662900E20140 /* Models */,
 				4DD9943F2BC8662900E20140 /* Services */,
 				4DD994542BC8662900E20140 /* Supporting Files */,
 				4DD9934C2BC7438300E20140 /* Products */,
@@ -205,14 +204,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		4DD994462BC8662900E20140 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				4DD994442BC8662900E20140 /* FeedItem.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		4DD9944E2BC8662900E20140 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +246,7 @@
 		4DD994722BC86CA000E20140 /* FeedService */ = {
 			isa = PBXGroup;
 			children = (
+				4DD994442BC8662900E20140 /* FeedItem.swift */,
 				4DD994412BC8662900E20140 /* FeedResponse.swift */,
 				4DD9943B2BC8662900E20140 /* FeedService.swift */,
 			);
