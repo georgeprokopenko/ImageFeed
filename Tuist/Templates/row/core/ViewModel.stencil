@@ -1,0 +1,61 @@
+import UIKit
+
+final class {{ name }}CellViewModel {
+
+    private weak var cell: {{ name }}Cell?
+    private var cachedSize: CGSize?
+
+    init() {}
+
+    private var cellModel: {{ name }}Cell.Model {
+        // TODO: fill model
+        {{ name }}Cell.Model()
+    }
+
+    private func bind(_ cell: {{ name }}Cell) {
+        unbind()
+        (cell.viewModel as? {{ name }}CellViewModel)?.unbind()
+
+        cell.viewModel = self
+        self.cell = cell
+    }
+
+    private func unbind() {
+        cell?.viewModel = nil
+        cell = nil
+    }
+}
+
+extension {{ name }}CellViewModel: {{ name }}CellViewModelProtocol {}
+
+extension {{ name }}CellViewModel: CommonRowViewModelProtocol {
+
+    var rowId: String {
+        // TODO: setup id
+        "{{ name }}CellViewModel"
+    }
+
+    var cellClass: AnyClass {
+        {{ name }}Cell.self
+    }
+
+    func configure(_ cell: Any) {
+        guard let cell = cell as? {{ name }}Cell else {
+            return
+        }
+
+        bind(cell)
+        cell.setModel(cellModel)
+    }
+
+    func height(with width: CGFloat) -> CGFloat {
+        if let cachedSize = cachedSize, cachedSize.width == width {
+            return cachedSize.height
+        }
+
+        let height = {{ name }}Cell.height(with: width, model: cellModel)
+        cachedSize = CGSize(width: width, height: height)
+
+        return height
+    }
+}

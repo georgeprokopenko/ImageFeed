@@ -1,0 +1,34 @@
+import Foundation
+import UIKit
+
+protocol {{ name }}CellViewModelProtocol: CommonRowViewModelProtocol {}
+
+final class {{ name }}Cell: CommonRowCell {
+
+    // MARK: - Layout
+
+    override func loadLayout() {
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+
+    static func height(with width: CGFloat, model: Model) -> CGFloat {
+        50
+    }
+
+    // MARK: - Model
+
+    struct Model {
+
+        public init() {}
+    }
+
+    weak var viewModel: {{ name }}CellViewModelProtocol?
+
+    func setModel(_ model: Model) {
+
+        setNeedsLayout()
+    }
+}
